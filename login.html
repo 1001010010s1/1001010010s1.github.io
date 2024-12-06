@@ -97,46 +97,35 @@
         const API_URL = 'http://68.183.131.82:8080/api';
 
         // Handle login form submission
-        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const errorMessage = document.getElementById('errorMessage');
-
-            console.log('Attempting login...'); // Debug log
-
+            const formData = new FormData(e.target);
+            
             try {
-                const response = await fetch(`${API_URL}/login`, {
+                // Connect to your local server
+                const response = await fetch('http://localhost:3000/auth/login', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                        'Access-Control-Allow-Origin': '*'
+                        'Content-Type': 'application/json'
                     },
-                    mode: 'cors',
-                    credentials: 'same-origin',
-                    body: JSON.stringify({ 
-                        username: username,
-                        password: password 
+                    body: JSON.stringify({
+                        username: formData.get('username'),
+                        password: formData.get('password')
                     })
                 });
 
-                console.log('Response received:', response);
-
                 const data = await response.json();
-                console.log('Data:', data);
-
+                
                 if (data.success) {
-                    localStorage.setItem('token', data.token);
-                    window.location.href = 'dashboard.html';
+                    // Store the token
+                    localStorage.setItem('solar_token', data.token);
+                    // Redirect to dashboard or home
+                    window.location.href = '/dashboard.html';
                 } else {
-                    errorMessage.style.display = 'block';
-                    errorMessage.textContent = data.message || 'Login failed';
+                    document.getElementById('error-message').textContent = data.message;
                 }
             } catch (error) {
-                console.error('Login error:', error);
-                errorMessage.style.display = 'block';
-                errorMessage.textContent = 'Connection error. Please try again.';
+                document.getElementById('error-message').textContent = 'Login failed. Please try again.';
             }
         });
 

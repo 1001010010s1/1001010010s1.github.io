@@ -11,7 +11,7 @@ router.post('/auth/login', async (req, res) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'API-Key': SOLAR_API_KEY  // API key is hidden from client
+                'API-Key': SOLAR_API_KEY
             },
             body: JSON.stringify({
                 username: req.body.username,

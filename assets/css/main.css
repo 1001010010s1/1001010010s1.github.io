@@ -4724,3 +4724,13 @@ input, select, textarea {
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     }
 </style>
+
+.error-message {
+    color: #ff3737;
+    margin-top: 0.5em;
+    font-size: 0.9em;
+}
+
+.field {
+    margin-bottom: 1em;
+}
