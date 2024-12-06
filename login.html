@@ -96,38 +96,38 @@
     <script>
         const API_URL = 'http://68.183.131.82:8080/api';
 
-        // Handle login form submission
-        document.getElementById('loginForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            
-            try {
-                // Connect to your local server
-                const response = await fetch('http://localhost:3000/auth/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        username: formData.get('username'),
-                        password: formData.get('password')
-                    })
-                });
-
-                const data = await response.json();
-                
-                if (data.success) {
-                    // Store the token
-                    localStorage.setItem('solar_token', data.token);
-                    // Redirect to dashboard or home
-                    window.location.href = '/dashboard.html';
-                } else {
-                    document.getElementById('error-message').textContent = data.message;
-                }
-            } catch (error) {
-                document.getElementById('error-message').textContent = 'Login failed. Please try again.';
-            }
+// Handle login form submission
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    try {
+        const response = await fetch('http://68.183.131.82:3000/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: formData.get('username'),
+                password: formData.get('password')
+            })
         });
+
+        const data = await response.json();
+        if (data.success) {
+            // Store token and days
+            localStorage.setItem('solar_token', data.token);
+            localStorage.setItem('solar_days', data.daysRemaining);
+            alert(`Login successful! You have ${data.daysRemaining} days remaining.`);
+            window.location.href = 'index.html';
+        } else {
+            document.getElementById('errorMessage').textContent = data.message;
+            document.getElementById('errorMessage').style.display = 'block';
+        }
+    } catch (error) {
+        document.getElementById('errorMessage').textContent = 'Login failed. Please try again.';
+        document.getElementById('errorMessage').style.display = 'block';
+    }
+});
 
         // Handle signup form submission
         document.getElementById('signupForm').addEventListener('submit', async function(e) {
