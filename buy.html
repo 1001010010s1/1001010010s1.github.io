@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Buy - SOLAR</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <style>
+        .pricing-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .pricing-card {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            padding: 2rem;
+            width: 250px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .price {
+            font-size: 2.5rem;
+            color: #ff7496;
+            margin: 1rem 0;
+        }
+
+        .duration {
+            font-size: 1.2rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .buy-button {
+            background: #ff7496;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .buy-button:hover {
+            background: #ff3c3c;
+        }
+
+        .best-value {
+            position: relative;
+            border: 2px solid #ff7496;
+        }
+
+        .best-value::after {
+            content: 'Best Value';
+            position: absolute;
+            top: -12px;
+            right: 10px;
+            background: #ff7496;
+            padding: 0.2rem 1rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper" class="fade-in">
+
+        <!-- Header -->
+        <header id="header">
+            <a href="index.html" class="logo" style="color:orange;">SOLAR 1.0</a>
+        </header>
+
+        <!-- Nav -->
+        <nav id="nav">
+            <ul class="links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li class="active"><a href="buy.html">Buy</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main -->
+        <div id="main">
+            <section>
+                <h2>Choose Your Plan</h2>
+                <div class="pricing-container">
+                    <!-- 1 Day Plan -->
+                    <div class="pricing-card">
+                        <h3 class="duration">1 Day</h3>
+                        <div class="price">$10</div>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>Full Access</li>
+                            <li>24/7 Support</li>
+                            <li>All Features</li>
+                        </ul>
+                        <a href="#" class="buy-button">Purchase</a>
+                    </div>
+
+                    <!-- 7 Days Plan -->
+                    <div class="pricing-card">
+                        <h3 class="duration">7 Days</h3>
+                        <div class="price">$40</div>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>Full Access</li>
+                            <li>24/7 Support</li>
+                            <li>All Features</li>
+                            <li>Priority Support</li>
+                        </ul>
+                        <a href="#" class="buy-button">Purchase</a>
+                    </div>
+
+                    <!-- 1 Month Plan -->
+                    <div class="pricing-card best-value">
+                        <h3 class="duration">1 Month</h3>
+                        <div class="price">$80</div>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>Full Access</li>
+                            <li>24/7 Support</li>
+                            <li>All Features</li>
+                            <li>Priority Support</li>
+                            <li>Extended Features</li>
+                        </ul>
+                        <a href="#" class="buy-button">Purchase</a>
+                    </div>
+
+                    <!-- Lifetime Plan -->
+                    <div class="pricing-card">
+                        <h3 class="duration">Lifetime</h3>
+                        <div class="price">$250</div>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>Full Access</li>
+                            <li>24/7 Support</li>
+                            <li>All Features</li>
+                            <li>Priority Support</li>
+                            <li>Extended Features</li>
+                            <li>Lifetime Updates</li>
+                        </ul>
+                        <a href="#" class="buy-button">Purchase</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+</html>
