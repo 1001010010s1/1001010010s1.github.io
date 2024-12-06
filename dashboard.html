@@ -1,0 +1,192 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>SOLAR Dashboard</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper" class="fade-in">
+
+        <!-- Header -->
+        <header id="header">
+            <a href="index.html" class="logo" style="color:orange;">SOLAR 1.0</a>
+        </header>
+
+        <!-- Nav -->
+        <nav id="nav">
+            <ul class="links">
+                <li class="active"><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <ul class="icons">
+                <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+                <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+                <li><a href="#" id="logoutButton" class="icon solid fa-sign-out-alt"><span class="label">Logout</span></a></li>
+            </ul>
+        </nav>
+
+        <!-- Main -->
+        <div id="main">
+            <section class="post">
+                <header class="major">
+                    <h1>Welcome to SOLAR</h1>
+                    <p>Your Dashboard</p>
+                </header>
+
+                <!-- Dashboard Content -->
+                <div class="dashboard-container">
+                    <div class="dashboard-section">
+                        <h2>Quick Actions</h2>
+                        <div class="actions special">
+                            <a href="#" class="button large">Download SOLAR</a>
+                            <a href="#" class="button large">View Tutorial</a>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-section">
+                        <h2>Your Profile</h2>
+                        <div class="profile-info">
+                            <div class="field">
+                                <label>Username</label>
+                                <p id="profileUsername">Loading...</p>
+                            </div>
+                            <div class="field">
+                                <label>Email</label>
+                                <p id="profileEmail">Loading...</p>
+                            </div>
+                            <div class="field">
+                                <label>Member Since</label>
+                                <p id="memberSince">Loading...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-section">
+                        <h2>Recent Activity</h2>
+                        <div class="activity-list">
+                            <p>No recent activity to display</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <section class="split contact">
+                <section>
+                    <h3>Support</h3>
+                    <p><a href="https://discord.gg/ZJ5TPTzw">Join our Discord</a></p>
+                </section>
+            </section>
+        </footer>
+
+        <!-- Copyright -->
+        <div id="copyright">
+            <ul><li>&copy; SOLAR</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <style>
+        .dashboard-container {
+            padding: 2rem 0;
+        }
+
+        .dashboard-section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        .profile-info {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .profile-info .field {
+            margin-bottom: 1rem;
+        }
+
+        .profile-info label {
+            display: block;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-info p {
+            margin: 0;
+            color: white;
+        }
+
+        .activity-list {
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        .actions.special {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        @media screen and (max-width: 736px) {
+            .actions.special {
+                flex-direction: column;
+            }
+        }
+    </style>
+
+    <script>
+        // Check if user is logged in
+        document.addEventListener('DOMContentLoaded', function() {
+            // You should implement proper session checking here
+            if (!localStorage.getItem('token')) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Handle logout
+            document.getElementById('logoutButton').addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.removeItem('token');
+                window.location.href = 'login.html';
+            });
+
+            // Load user profile data
+            fetch('http://localhost:8080/api/profile', {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('profileUsername').textContent = data.username;
+                    document.getElementById('profileEmail').textContent = data.email;
+                    document.getElementById('memberSince').textContent = new Date(data.memberSince).toLocaleDateString();
+                }
+            })
+            .catch(error => {
+                console.error('Error loading profile:', error);
+            });
+        });
+    </script>
+</body>
+</html>
