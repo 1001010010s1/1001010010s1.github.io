@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SOLAR - Verify Account</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+    <div id="verificationStatus">
+        Verifying your account...
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+        
+        if (token) {
+            fetch('http://68.183.131.82:3000/verify?token=' + token)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('verificationStatus').innerHTML = 
+                            'Account verified! You can now <a href="/login.html">login</a>';
+                    } else {
+                        document.getElementById('verificationStatus').innerHTML = 
+                            'Verification failed. Please try again.';
+                    }
+                });
+        }
+    </script>
+</body>
+</html>
